@@ -1,0 +1,79 @@
+﻿<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+@using Resources = ASPNetMVC.Properties.Resources;
+@{
+    ViewBag.Title = Resources.BabyEdu;
+}
+<h2>@ViewBag.Title</h2>
+<script>
+    //var app = angular.module('eduApp', []);
+    //app.controller('babyEduController', function ($scope, $http) {
+    //    //
+    //    $http.get("/api/ApiBabyEdu").success(
+    //        function (response) {
+    //            $scope.BabyEducations = response;
+    //            //alert($scope.BabyEducations[0].title)
+    //            //alert($scope.BabyEducations[1].title)
+    //            //alert($scope.BabyEducations[2].title)
+    //        }
+    //        )
+
+    //    $scope.fetchArticle = function (item) {
+    //        $http.get("/api/ApiBabyEdu/"+item.id).success(
+    //        function (response) {
+    //            $scope.eduArticle = response;
+    //            //alert($scope.eduArticle)
+    //        }
+    //        )
+    //    }
+
+    //}
+    //    );
+
+    //var uri = '/api/ApiBabyEdu';
+
+    //$(document).ready(function () {
+    //    // Send an AJAX request
+    //    $.getJSON(uri)
+    //        .done(function (data) {
+    //            // On success, 'data' contains a list of primarySchoolTopics.
+    //            $.each(data, function (key, item) {
+    //                // Add a list item for the primarySchoolTopic.
+    //                $('<li>', { text: formatItem(item) }).appendTo($('#primarySchoolTopics'));
+    //            });
+    //        });
+    //});
+
+
+    //function formatItem(item) {
+    //    return item.id + ' Title:' + item.title + 'Content:' + item.content;
+    //}
+    //href="/api/ApiBabyEdu/{{item.id}}"
+
+    //function clickArticle(item) {
+    //    var scope = angular.element(document.getElementById("MainWrap")).scope();
+    //    scope.$apply(function () {
+    //        scope.fetchArticle(item);
+    //    });
+    //}
+
+    $(document).ready(function () {
+        var scope = angular.element(document.getElementById("MainWrap")).scope();
+        scope.$apply(function () {
+            scope.fetchArticleById(@ViewBag.Id)
+        }
+            );
+    }
+        )
+</script>
+
+<div id="MainWrap" ng-controller="babyEduController" class="row">
+    <div class="col-md-2">
+        <div ng-repeat="item in BabyEducations">
+            @*<button ng-show="highLight(item,@ViewBag.Id)" id="{{item.id}}" class="btn-success btn-lg col-md-12" ng-click="fetchArticle(item)">{{item.title}}</button>*@
+            <a href="#" id="{{item.id}}" ng-show="highLight(item,@ViewBag.Id)" ng-click="fetchArticle(item);">{{item.title}}</a>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <article id="artContent"></article>
+    </div>
+</div>
